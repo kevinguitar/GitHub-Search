@@ -1,6 +1,7 @@
 package com.kevingt.githubsearch.model
 
 import com.google.gson.annotations.SerializedName
+import com.kevingt.githubsearch.util.Constants
 
 data class SearchResult(
     @SerializedName("total_count")
@@ -8,8 +9,9 @@ data class SearchResult(
     @SerializedName("items")
     val repos: List<Repository>
 ) {
-    //TODO: provide a function to judge is last page or not
-    //fun isLastPage(): Boolean
+    fun isLastPage(pageNumber: Int): Boolean {
+        return Constants.ITEMS_PER_PAGE * pageNumber >= count
+    }
 }
 
 data class Repository(

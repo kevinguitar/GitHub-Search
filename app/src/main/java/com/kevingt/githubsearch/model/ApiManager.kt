@@ -2,7 +2,6 @@ package com.kevingt.githubsearch.model
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import com.kevingt.githubsearch.BuildConfig
-import com.kevingt.githubsearch.util.Constants
 import com.kevingt.githubsearch.util.convertToHttpResult
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -22,13 +21,9 @@ class ApiManager {
             .build()
     }
 
-    suspend fun searchRepositories(
-        keywords: String,
-        sortBy: String = Constants.SORT_BY_BEST_MATCH,
-        page: Int
-    ) {
+    suspend fun searchRepositories(keywords: String, sortBy: String, pageNumber: Int) =
         retrofit.value.create(GitHubApi::class.java)
-            .searchRepositories(keywords, sortBy, page)
+            .searchRepositories(keywords, sortBy, pageNumber)
             .convertToHttpResult()
-    }
+
 }
