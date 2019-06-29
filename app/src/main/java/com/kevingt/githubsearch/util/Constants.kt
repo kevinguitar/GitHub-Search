@@ -6,4 +6,5 @@ object Constants {
     const val SORT_BY_STARS = "stars"
     const val SORT_BY_FORKS = "forks"
     const val SORT_BY_UPDATED = "updated"
+    const val ITEMS_PER_PAGE = 10   // Set lower can see pagination obviously
 }

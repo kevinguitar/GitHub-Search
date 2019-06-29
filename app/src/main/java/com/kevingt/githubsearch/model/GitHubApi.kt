@@ -1,5 +1,6 @@
 package com.kevingt.githubsearch.model
 
+import com.kevingt.githubsearch.util.Constants
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
 import retrofit2.http.GET
@@ -11,7 +12,8 @@ interface GitHubApi {
     fun searchRepositories(
         @Query("q") keywords: String,
         @Query("sort") sortBy: String,
-        @Query("page") page: Int
+        @Query("page") pageNumber: Int,
+        @Query("per_page") perPage: Int = Constants.ITEMS_PER_PAGE
     ): Deferred<Response<SearchResult>>
 
 }

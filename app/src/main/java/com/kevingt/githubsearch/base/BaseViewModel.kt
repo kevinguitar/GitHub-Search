@@ -1,11 +1,13 @@
 package com.kevingt.githubsearch.base
 
 import androidx.lifecycle.ViewModel
+import com.kevingt.githubsearch.model.ApiManager
 import kotlinx.coroutines.Job
 
 abstract class BaseViewModel : ViewModel() {
 
-    protected var jobQueue = mutableListOf<Job>()
+    protected val apiManager = ApiManager.getInstance()
+    protected val jobQueue = mutableListOf<Job>()
 
     override fun onCleared() {
         // Cancel the jobs that still working, and clear the queue
