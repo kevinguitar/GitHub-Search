@@ -1,5 +1,6 @@
 package com.kevingt.githubsearch.model
 
+import androidx.annotation.VisibleForTesting
 import com.google.gson.annotations.SerializedName
 import com.kevingt.githubsearch.util.Constants
 
@@ -9,6 +10,11 @@ data class SearchResult(
     @SerializedName("items")
     val repos: List<Repository>
 ) {
+    // Create to make unit test more easier
+    @VisibleForTesting
+    constructor() : this(0, listOf())
+
+    // Judge if already reach last page
     fun isLastPage(pageNumber: Int): Boolean {
         return Constants.ITEMS_PER_PAGE * pageNumber >= count
     }
