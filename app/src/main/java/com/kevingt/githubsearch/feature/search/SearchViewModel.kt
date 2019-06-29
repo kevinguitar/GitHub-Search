@@ -3,6 +3,7 @@ package com.kevingt.githubsearch.feature.search
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.kevingt.githubsearch.base.BaseViewModel
+import com.kevingt.githubsearch.model.ApiManager
 import com.kevingt.githubsearch.model.HttpResult
 import com.kevingt.githubsearch.model.Repository
 import com.kevingt.githubsearch.util.addAllAndNotifyObserver
@@ -12,7 +13,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SearchViewModel : BaseViewModel() {
+class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager) {
 
     // Store the searching result, make sure View can't modify it
     val repositories: LiveData<List<Repository>>
@@ -53,7 +54,7 @@ class SearchViewModel : BaseViewModel() {
                     }
                 }
             }
-        }
+        }.also { jobQueue.add(it) }
     }
 
     fun resetPageNumber() {
