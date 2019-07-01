@@ -1,19 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".feature.search.SearchActivity">
+
+    <include layout="@layout/layout_appbar" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".feature.search.SearchActivity">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <TextView
-            android:layout_width="wrap_content"
+        <!--Custom search bar-->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_search_bar"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/search_bar_height"
+            android:layout_marginStart="@dimen/search_bar_margin"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="@dimen/search_bar_margin"
+            android:background="@drawable/bg_search_bar"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/et_search_keywords"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginStart="@dimen/search_bar_edit_text_margin"
+                android:layout_marginEnd="@dimen/search_bar_edit_text_margin"
+                android:background="@android:color/transparent"
+                android:hint="@string/search_hint"
+                android:imeOptions="actionSearch"
+                android:inputType="text"
+                android:textColor="@color/wordingLight"
+                android:textSize="18sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/iv_search_icon"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="Autofill" />
+
+            <ImageView
+                android:id="@+id/iv_search_icon"
+                android:layout_width="@dimen/search_bar_icon_size"
+                android:layout_height="@dimen/search_bar_icon_size"
+                android:layout_marginEnd="13dp"
+                android:contentDescription="@string/search_icon_description"
+                android:src="@drawable/icon_search"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!--SortBy filter-->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/cg_search_sort"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:text="Hello World!"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            android:layout_marginStart="@dimen/search_page_margin"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="@dimen/search_page_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_search_bar"
+            app:singleSelection="true">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cp_search_stars"
+                style="@style/Widget.MaterialComponents.Chip.Filter.SortChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/search_sort_by_stars" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cp_search_forks"
+                style="@style/Widget.MaterialComponents.Chip.Filter.SortChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/search_bar_chip_margin"
+                android:text="@string/search_sort_by_forks" />
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/cp_search_updated"
+                style="@style/Widget.MaterialComponents.Chip.Filter.SortChip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/search_bar_chip_margin"
+                android:text="@string/search_sort_by_updated" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_search_repository"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cg_search_sort"
+            tools:listitem="@layout/item_repository" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
