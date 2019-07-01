@@ -15,6 +15,7 @@
             android:layout_width="@dimen/appbar_image_size"
             android:layout_height="@dimen/appbar_image_size"
             android:contentDescription="@string/search_appbar_image_description"
+            android:padding="8dp"
             android:src="@drawable/icon_github" />
 
         <TextView
@@ -25,7 +26,7 @@
             android:paddingEnd="@dimen/appbar_title_padding"
             android:text="@string/app_name"
             android:textColor="@color/wordingDark"
-            android:textSize="24sp" />
+            android:textSize="22sp" />
 
     </androidx.appcompat.widget.Toolbar>
 

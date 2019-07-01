@@ -25,7 +25,7 @@ data class Repository(
     val stars: Int,
     @SerializedName("forks_count")
     val forks: Int,
-    val language: String
+    val language: String?
 )
 
 data class Owner(

@@ -8,6 +8,7 @@
     <string name="search_sort_by_stars">stars</string>
     <string name="search_sort_by_forks">forks</string>
     <string name="search_sort_by_updated">updated</string>
+    <string name="search_empty_keywords">Please input the keyword!</string>
 
     <!--Repository-->
     <string name="repo_star">star</string>

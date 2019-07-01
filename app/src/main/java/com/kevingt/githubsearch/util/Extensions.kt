@@ -1,7 +1,13 @@
 package com.kevingt.githubsearch.util
 
+import android.app.Activity
 import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
+import android.widget.ImageView
 import androidx.lifecycle.MutableLiveData
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
 import com.kevingt.githubsearch.model.HttpResult
 import kotlinx.coroutines.Deferred
 import retrofit2.Response
@@ -10,16 +16,16 @@ import retrofit2.Response
 /**
  * @param initialValue  Set default value for LiveData
  */
-fun <T : Any?> MutableLiveData<T>.default(initialValue: T) = apply { this.value = initialValue }
+fun <T : Any?> MutableLiveData<T>.default(initialValue: T) = apply { value = initialValue }
 
 
 /**
  * @return  Solving the problem for list modification that won't notify observer
  */
 fun <T> MutableLiveData<List<T>>.addAllAndNotifyObserver(items: List<T>) {
-    val updatedItems = this.value as MutableList
+    val updatedItems = value as MutableList
     updatedItems.addAll(items)
-    this.value = updatedItems
+    value = updatedItems
 }
 
 
@@ -27,6 +33,27 @@ fun <T> MutableLiveData<List<T>>.addAllAndNotifyObserver(items: List<T>) {
  * @return  Convert dp to px quickly
  */
 fun Int.toPx(context: Context) = this * context.resources.displayMetrics.density
+
+
+/**
+ * @param url   Load image url and crop to circle using Glide
+ */
+fun ImageView.loadRoundImage(url: String) {
+    Glide.with(this)
+            .load(url)
+            .apply(RequestOptions.circleCropTransform())
+            .into(this)
+}
+
+
+/**
+ * @return  Only works for activities
+ */
+fun Activity.hideKeyboard() {
+    val imm = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    val view = currentFocus ?: View(this)
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
+}
 
 
 /**

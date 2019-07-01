@@ -36,13 +36,17 @@ abstract class BaseActivity : AppCompatActivity() {
      * @param duration  The time that the toast will showing
      */
     protected fun showToast(@StringRes resId: Int, duration: Int = Toast.LENGTH_SHORT) {
+        showToast(getString(resId), duration)
+    }
+
+    protected fun showToast(message: String, duration: Int = Toast.LENGTH_SHORT) {
         if (::toast.isInitialized) {
-            toast.setText(resId)
+            toast.setText(message)
             toast.duration = duration
             toast.show()
             return
         }
-        toast = Toast.makeText(this, resId, duration)
+        toast = Toast.makeText(this, message, duration)
         toast.show()
     }
 }

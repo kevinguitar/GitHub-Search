@@ -6,6 +6,7 @@ import com.kevingt.githubsearch.base.BaseViewModel
 import com.kevingt.githubsearch.model.ApiManager
 import com.kevingt.githubsearch.model.HttpResult
 import com.kevingt.githubsearch.model.Repository
+import com.kevingt.githubsearch.util.Constants
 import com.kevingt.githubsearch.util.addAllAndNotifyObserver
 import com.kevingt.githubsearch.util.default
 import kotlinx.coroutines.CoroutineScope
@@ -21,14 +22,20 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
     private val _repositories = MutableLiveData<List<Repository>>().default(mutableListOf())
 
     val isLoading = MutableLiveData<Boolean>().default(false)
+    val isLastPage = MutableLiveData<Boolean>().default(true)
     val errorMessage = MutableLiveData<String>()
     private var pageNumber = 1
-    private var isLastPage = false
+
+    // Reset page number and clear the cache
+    fun initSearch() {
+        // Avoid adapter show load more view
+        isLastPage.value = true
+        pageNumber = 1
+        _repositories.value = mutableListOf()
+    }
 
     // Search repositories in IO thread and wait for the result
-    fun searchRepositories(keywords: String, sortBy: String) {
-        // Break the request if already get to last page
-        if (isLastPage) return
+    fun searchRepositories(keywords: String, sortBy: String = Constants.SORT_BY_BEST_MATCH) {
         isLoading.value = true
         CoroutineScope(Dispatchers.IO).launch {
             val result = apiManager.searchRepositories(keywords, sortBy, pageNumber)
@@ -41,8 +48,9 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
 
                         // Judge the page number
                         if (body.isLastPage(pageNumber)) {
-                            isLastPage = true
+                            isLastPage.value = true
                         } else {
+                            isLastPage.value = false
                             pageNumber + 1
                         }
                     }
@@ -55,9 +63,5 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
                 }
             }
         }.also { jobQueue.add(it) }
-    }
-
-    fun resetPageNumber() {
-        pageNumber = 1
     }
 }
