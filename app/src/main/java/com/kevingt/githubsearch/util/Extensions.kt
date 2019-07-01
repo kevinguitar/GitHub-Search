@@ -1,5 +1,6 @@
 package com.kevingt.githubsearch.util
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import com.kevingt.githubsearch.model.HttpResult
 import kotlinx.coroutines.Deferred
@@ -20,6 +21,12 @@ fun <T> MutableLiveData<List<T>>.addAllAndNotifyObserver(items: List<T>) {
     updatedItems.addAll(items)
     this.value = updatedItems
 }
+
+
+/**
+ * @return  Convert dp to px quickly
+ */
+fun Int.toPx(context: Context) = this * context.resources.displayMetrics.density
 
 
 /**

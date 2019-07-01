@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.kevingt.githubsearch">
 
-    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
             android:allowBackup="true"
@@ -12,7 +12,8 @@
             android:supportsRtl="true"
             android:fullBackupContent="false"
             android:theme="@style/AppTheme">
-        <activity android:name=".feature.search.SearchActivity">
+        <activity android:name=".feature.search.SearchActivity"
+                  android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <action android:name="android.intent.action.VIEW"/>
