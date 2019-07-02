@@ -11,6 +11,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!--Launcher theme-->
+    <style name="AppTheme.NoActionBar.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+    </style>
+
+    <!--Custom chip theme-->
     <style name="Widget.MaterialComponents.Chip.Filter.SortChip">
         <item name="android:textSize">20sp</item>
         <item name="android:textColor">@color/colorPrimary</item>

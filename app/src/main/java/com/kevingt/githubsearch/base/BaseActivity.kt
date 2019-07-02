@@ -5,13 +5,15 @@ import android.widget.Toast
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AppCompatActivity
-import androidx.appcompat.widget.Toolbar
+import com.kevingt.githubsearch.R
 
 abstract class BaseActivity : AppCompatActivity() {
 
     private lateinit var toast: Toast
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Reset the theme to NoActionBar
+        setTheme(R.style.AppTheme_NoActionBar)
         super.onCreate(savedInstanceState)
         setContentView(getLayoutId())
         initView(savedInstanceState)
@@ -21,15 +23,6 @@ abstract class BaseActivity : AppCompatActivity() {
     protected abstract fun getLayoutId(): Int
 
     protected abstract fun initView(savedInstanceState: Bundle?)
-
-    /**
-     * @param toolbar   Allow to set custom Toolbar
-     * @param titleId   The title that show on Toolbar
-     */
-    protected fun setActionBar(toolbar: Toolbar, @StringRes titleId: Int) {
-        setSupportActionBar(toolbar)
-        supportActionBar?.let { setTitle(titleId) }
-    }
 
     /**
      * @param resId     Message id in strings.xml
