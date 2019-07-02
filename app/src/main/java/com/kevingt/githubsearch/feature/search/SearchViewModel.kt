@@ -6,9 +6,7 @@ import com.kevingt.githubsearch.base.BaseViewModel
 import com.kevingt.githubsearch.model.ApiManager
 import com.kevingt.githubsearch.model.HttpResult
 import com.kevingt.githubsearch.model.Repository
-import com.kevingt.githubsearch.util.Constants
 import com.kevingt.githubsearch.util.addAllAndNotifyObserver
-import com.kevingt.githubsearch.util.default
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -33,6 +31,9 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
         pageNumber = 1
         _repositories.value = mutableListOf()
     }
+
+    // Check ViewModel has data or not
+    fun hasData() = _repositories.value?.isNotEmpty()!!
 
     // Search repositories in IO thread and wait for the result
     fun searchRepositories(keywords: String, sortBy: String) {

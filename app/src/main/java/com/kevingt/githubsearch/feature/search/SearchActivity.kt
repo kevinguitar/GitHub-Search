@@ -23,7 +23,13 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
     override fun getLayoutId() = R.layout.activity_search
 
     override fun initView(savedInstanceState: Bundle?) {
+        // Get ViewModel from providers with activity scope
         viewModel = ViewModelProviders.of(this).get(SearchViewModel::class.java)
+
+        // Solve the rotate screen problem of description view showing
+        if (savedInstanceState != null && viewModel.hasData()) {
+            gp_search_description.visibility = View.INVISIBLE
+        }
 
         // Provide three ways to trigger search
         //      1. Press ime action in keyboard
@@ -36,8 +42,11 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
         iv_search_icon.setOnClickListener {
             performSearch()
         }
-        cg_search_sort.setOnCheckedChangeListener { _, _ ->
-            performSearch()
+        cg_search_sort.post {
+            // Use View.post() to avoid onConfiguration changed trigger
+            cg_search_sort.setOnCheckedChangeListener { _, _ ->
+                performSearch()
+            }
         }
 
         // Setup recycler view and adapter
