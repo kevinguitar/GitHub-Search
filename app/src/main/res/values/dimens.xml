@@ -13,6 +13,7 @@
     <dimen name="search_bar_chip_margin">10dp</dimen>
     <dimen name="search_page_margin">32dp</dimen>
     <dimen name="search_page_loading_size">160dp</dimen>
+    <dimen name="search_content_description_icon_size">62dp</dimen>
 
     <!--Repository-->
     <dimen name="repo_icons_size">12dp</dimen>

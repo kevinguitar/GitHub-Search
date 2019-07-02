@@ -9,6 +9,9 @@
     <string name="search_sort_by_forks">fork</string>
     <string name="search_sort_by_updated">updated</string>
     <string name="search_empty_keywords">Please input the keyword!</string>
+    <string name="search_content_description_icon_description">Search description</string>
+    <string name="search_content_description_welcome">Start your search!</string>
+    <string name="search_content_description_no_results">Oops, no results…</string>
 
     <!--Repository-->
     <string name="repo_star">star</string>

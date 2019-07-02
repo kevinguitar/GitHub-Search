@@ -4,6 +4,7 @@
 
     <color name="wordingDark">#4b4b4b</color>
     <color name="wordingLight">#5e5e5e</color>
+    <color name="wordingGrey">#d8d8d8</color>
     <color name="wordingWhite">#ffffff</color>
     <color name="colorDivider">#dddddd</color>
     <color name="colorBorder">#eeeeee</color>

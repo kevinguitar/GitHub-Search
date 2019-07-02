@@ -19,10 +19,10 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
     // Store the searching result, make sure View can't modify it
     val repositories: LiveData<List<Repository>>
         get() = _repositories
-    private val _repositories = MutableLiveData<List<Repository>>().default(mutableListOf())
+    private val _repositories = MutableLiveData<List<Repository>>()
 
-    val isLoading = MutableLiveData<Boolean>().default(false)
-    val isLastPage = MutableLiveData<Boolean>().default(true)
+    val isLoading = MutableLiveData<Boolean>()
+    val isLastPage = MutableLiveData<Boolean>()
     val errorMessage = MutableLiveData<String>()
     private var pageNumber = 1
 

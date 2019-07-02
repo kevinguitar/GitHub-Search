@@ -69,6 +69,7 @@
             android:layout_marginStart="@dimen/search_bar_margin"
             android:layout_marginTop="12dp"
             android:layout_marginEnd="@dimen/search_bar_margin"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cl_search_bar"
@@ -98,6 +99,44 @@
                 android:text="@string/search_sort_by_updated" />
 
         </com.google.android.material.chip.ChipGroup>
+
+        <!--Search Content-->
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/gp_search_description"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:constraint_referenced_ids="iv_search_description_icon, tv_search_description_message" />
+
+        <ImageView
+            android:id="@+id/iv_search_description_icon"
+            android:layout_width="@dimen/search_content_description_icon_size"
+            android:layout_height="@dimen/search_content_description_icon_size"
+            android:layout_marginTop="58dp"
+            android:contentDescription="@string/search_content_description_icon_description"
+            android:src="@drawable/icon_smile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/cl_search_bar" />
+
+        <TextView
+            android:id="@+id/tv_search_description_message"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="18dp"
+            android:text="@string/search_content_description_welcome"
+            android:textAlignment="center"
+            android:textColor="@color/wordingGrey"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/iv_search_description_icon" />
+
+        <androidx.constraintlayout.widget.Group
+            android:id="@+id/gp_search_result"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="invisible"
+            app:constraint_referenced_ids="cg_search_sort, rv_search_repository" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_search_repository"

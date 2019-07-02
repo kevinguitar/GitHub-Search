@@ -33,6 +33,8 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
             performSearch(et_search_keywords.text.toString())
         }
 
+        //TODO: provide sort function
+
         // Setup recycler view and adapter
         rv_search_repository.layoutManager = LinearLayoutManager(this)
         rv_search_repository.adapter = adapter
@@ -41,7 +43,11 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
         // Observing live data in ViewModel
         viewModel.repositories.observe(this, Observer {
             if (it.isEmpty()) {
-                //TODO: show no result hint
+                // show no results hint
+                iv_search_description_icon.setImageResource(R.drawable.icon_oops)
+                tv_search_description_message.setText(R.string.search_content_description_no_results)
+                gp_search_description.visibility = View.VISIBLE
+                gp_search_result.visibility = View.INVISIBLE
             }
             adapter.repos.clear()
             adapter.repos.addAll(it)
@@ -50,11 +56,13 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
 
         viewModel.isLoading.observe(this, Observer { isLoading ->
             if (isLoading) {
+                // show loading view and hide other contents
                 lav_search_loading.visibility = View.VISIBLE
-                rv_search_repository.visibility = View.INVISIBLE
+                gp_search_description.visibility = View.INVISIBLE
+                gp_search_result.visibility = View.INVISIBLE
             } else {
                 lav_search_loading.visibility = View.INVISIBLE
-                rv_search_repository.visibility = View.VISIBLE
+                gp_search_result.visibility = View.VISIBLE
             }
         })
 
