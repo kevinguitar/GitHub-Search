@@ -145,6 +145,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/cg_search_sort"
+            tools:background="@android:color/white"
             tools:listitem="@layout/item_repository" />
 
         <com.airbnb.lottie.LottieAnimationView
