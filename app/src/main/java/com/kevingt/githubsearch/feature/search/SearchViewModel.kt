@@ -23,6 +23,8 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
     val isLastPage = MutableLiveData<Boolean>()
     val errorMessage = MutableLiveData<String>()
     private var pageNumber = 1
+    private var keywordsCache = String()
+    private var sortByCache = String()
 
     // Reset page number and clear the cache
     fun initSearch() {
@@ -36,7 +38,7 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
     fun hasData() = _repositories.value?.isNotEmpty()!!
 
     // Search repositories in IO thread and wait for the result
-    fun searchRepositories(keywords: String, sortBy: String) {
+    fun searchRepositories(keywords: String = keywordsCache, sortBy: String = sortByCache) {
         isLoading.value = true
         CoroutineScope(Dispatchers.IO).launch {
             val result = apiManager.searchRepositories(keywords, sortBy, pageNumber)
@@ -52,7 +54,7 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
                             isLastPage.value = true
                         } else {
                             isLastPage.value = false
-                            pageNumber + 1
+                            pageNumber += 1
                         }
                     }
                     is HttpResult.ApiError -> {
@@ -63,6 +65,10 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
                     }
                 }
             }
-        }.also { jobQueue.add(it) }
+        }.also {
+            jobQueue.add(it)
+            keywordsCache = keywords
+            sortByCache = sortBy
+        }
     }
 }

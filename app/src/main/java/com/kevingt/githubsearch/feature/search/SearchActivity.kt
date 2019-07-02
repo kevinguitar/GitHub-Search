@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.kevingt.githubsearch.R
 import com.kevingt.githubsearch.base.BaseActivity
 import com.kevingt.githubsearch.util.Constants
+import com.kevingt.githubsearch.util.addLoadMoreListener
 import com.kevingt.githubsearch.util.hideKeyboard
 import kotlinx.android.synthetic.main.activity_search.*
 
@@ -28,6 +29,7 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
 
         // Solve the rotate screen problem of description view showing
         if (savedInstanceState != null && viewModel.hasData()) {
+            cg_search_sort.visibility = View.VISIBLE
             gp_search_description.visibility = View.INVISIBLE
         }
 
@@ -52,7 +54,11 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
         // Setup recycler view and adapter
         rv_search_repository.layoutManager = LinearLayoutManager(this)
         rv_search_repository.adapter = adapter
-        //TODO: add loadMore listener to RecyclerView
+        rv_search_repository.addLoadMoreListener {
+            if (!adapter.isLastPage) {
+                viewModel.searchRepositories()
+            }
+        }
 
         // Observing live data in ViewModel
         viewModel.repositories.observe(this, Observer {
@@ -68,6 +74,7 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
         })
 
         viewModel.isLoading.observe(this, Observer { isLoading ->
+            if (viewModel.hasData()) return@Observer
             if (isLoading) {
                 // show loading view and hide other contents
                 lav_search_loading.visibility = View.VISIBLE
