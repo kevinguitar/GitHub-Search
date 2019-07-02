@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.appbar.AppBarLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="8dp">
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/tb_appbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/appbar_size"
+        android:background="@android:color/white">
+
+        <ImageView
+            android:id="@+id/iv_appbar"
+            android:layout_width="@dimen/appbar_image_size"
+            android:layout_height="@dimen/appbar_image_size"
+            android:contentDescription="@string/search_appbar_image_description"
+            android:padding="8dp"
+            android:src="@drawable/icon_github" />
+
+        <TextView
+            android:id="@+id/tv_appbar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/appbar_title_padding"
+            android:paddingEnd="@dimen/appbar_title_padding"
+            android:text="@string/app_name"
+            android:textColor="@color/wordingDark"
+            android:textSize="22sp" />
+
+    </androidx.appcompat.widget.Toolbar>
+
+</com.google.android.material.appbar.AppBarLayout>

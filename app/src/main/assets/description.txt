@@ -1,0 +1,5 @@
+"animation_loading.json" is download from
+https://lottiefiles.com/222-trail-loading
+
+"animation_load_more.json" is download from
+https://lottiefiles.com/196-material-wave-loading

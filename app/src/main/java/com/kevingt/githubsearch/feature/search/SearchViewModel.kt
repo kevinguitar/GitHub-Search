@@ -7,7 +7,6 @@ import com.kevingt.githubsearch.model.ApiManager
 import com.kevingt.githubsearch.model.HttpResult
 import com.kevingt.githubsearch.model.Repository
 import com.kevingt.githubsearch.util.addAllAndNotifyObserver
-import com.kevingt.githubsearch.util.default
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -18,17 +17,28 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
     // Store the searching result, make sure View can't modify it
     val repositories: LiveData<List<Repository>>
         get() = _repositories
-    private val _repositories = MutableLiveData<List<Repository>>().default(mutableListOf())
+    private val _repositories = MutableLiveData<List<Repository>>()
 
-    val isLoading = MutableLiveData<Boolean>().default(false)
+    val isLoading = MutableLiveData<Boolean>()
+    val isLastPage = MutableLiveData<Boolean>()
     val errorMessage = MutableLiveData<String>()
     private var pageNumber = 1
-    private var isLastPage = false
+    private var keywordsCache = String()
+    private var sortByCache = String()
+
+    // Reset page number and clear the cache
+    fun initSearch() {
+        // Avoid adapter show load more view
+        isLastPage.value = true
+        pageNumber = 1
+        _repositories.value = mutableListOf()
+    }
+
+    // Check ViewModel has data or not
+    fun hasData() = _repositories.value?.isNotEmpty()!!
 
     // Search repositories in IO thread and wait for the result
-    fun searchRepositories(keywords: String, sortBy: String) {
-        // Break the request if already get to last page
-        if (isLastPage) return
+    fun searchRepositories(keywords: String = keywordsCache, sortBy: String = sortByCache) {
         isLoading.value = true
         CoroutineScope(Dispatchers.IO).launch {
             val result = apiManager.searchRepositories(keywords, sortBy, pageNumber)
@@ -41,9 +51,10 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
 
                         // Judge the page number
                         if (body.isLastPage(pageNumber)) {
-                            isLastPage = true
+                            isLastPage.value = true
                         } else {
-                            pageNumber + 1
+                            isLastPage.value = false
+                            pageNumber += 1
                         }
                     }
                     is HttpResult.ApiError -> {
@@ -54,10 +65,10 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
                     }
                 }
             }
-        }.also { jobQueue.add(it) }
-    }
-
-    fun resetPageNumber() {
-        pageNumber = 1
+        }.also {
+            jobQueue.add(it)
+            keywordsCache = keywords
+            sortByCache = sortBy
+        }
     }
 }

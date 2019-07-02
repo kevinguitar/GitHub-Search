@@ -1,3 +1,24 @@
 <resources>
-    <string name="app_name">GitHubSearch</string>
+    <string name="app_name">GitHub Search</string>
+
+    <!--Search-->
+    <string name="search_appbar_image_description">GitHub icon</string>
+    <string name="search_hint">Type something…</string>
+    <string name="search_icon_description">Search icon</string>
+    <string name="search_sort_by_stars">star</string>
+    <string name="search_sort_by_forks">fork</string>
+    <string name="search_sort_by_updated">updated</string>
+    <string name="search_empty_keywords">Please input the keyword!</string>
+    <string name="search_content_description_icon_description">Search description</string>
+    <string name="search_content_description_welcome">Start your search!</string>
+    <string name="search_content_description_no_results">Oops, no results…</string>
+
+    <!--Repository-->
+    <string name="repo_star">star</string>
+    <string name="repo_star_description">Stars of the repo</string>
+    <string name="repo_fork">fork</string>
+    <string name="repo_fork_description">Forks of the repo</string>
+
+    <!--Custom circle image view-->
+    <string name="circle_image_view_avatar_description">GitHub user\'s avatar</string>
 </resources>
