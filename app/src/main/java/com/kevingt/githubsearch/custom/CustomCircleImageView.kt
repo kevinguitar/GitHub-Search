@@ -16,7 +16,7 @@ class CustomCircleImageView @JvmOverloads constructor(
 
     private val strokeSize = 1.toPx(context)
     private val paint = Paint().apply {
-        isAntiAlias = false
+        isAntiAlias = true
         style = Paint.Style.STROKE
         strokeWidth = strokeSize
         color = ContextCompat.getColor(context, R.color.colorPrimary)
