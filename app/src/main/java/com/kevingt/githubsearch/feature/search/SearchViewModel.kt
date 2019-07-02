@@ -35,7 +35,7 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
     }
 
     // Search repositories in IO thread and wait for the result
-    fun searchRepositories(keywords: String, sortBy: String = Constants.SORT_BY_BEST_MATCH) {
+    fun searchRepositories(keywords: String, sortBy: String) {
         isLoading.value = true
         CoroutineScope(Dispatchers.IO).launch {
             val result = apiManager.searchRepositories(keywords, sortBy, pageNumber)
