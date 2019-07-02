@@ -36,6 +36,20 @@ fun Int.toPx(context: Context) = this * context.resources.displayMetrics.density
 
 
 /**
+ * @return  Avoid showing integer too long on view
+ */
+fun Int.formatNumber(): String {
+    if (this < 1000) return toString()
+    // Subtract the remainder of 100. Ex: 1021 -> 1000
+    val round = minus(rem(100))
+    if (round.rem(1000) == 0) {
+        return round.div(1000).toString() + "k"
+    }
+    return "%.1fk".format(round.div(1000f))
+}
+
+
+/**
  * @param url   Load image url and crop to circle using Glide
  */
 fun ImageView.loadRoundImage(url: String) {

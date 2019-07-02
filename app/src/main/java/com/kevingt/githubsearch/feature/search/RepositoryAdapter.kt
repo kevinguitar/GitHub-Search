@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.kevingt.githubsearch.R
 import com.kevingt.githubsearch.model.Repository
+import com.kevingt.githubsearch.util.formatNumber
 import com.kevingt.githubsearch.util.loadRoundImage
 import kotlinx.android.synthetic.main.item_repository.view.*
 import kotlinx.android.synthetic.main.layout_custom_circle_image_view.view.*
@@ -42,8 +43,8 @@ class RepositoryAdapter(private val itemListener: ItemListener) :
             iv_circle_avatar.loadRoundImage(repos[position].owner.avatarUrl)
             tv_repo_full_name.text = repos[position].fullName
             tv_repo_description.text = repos[position].description
-            tv_repo_star_count.text = repos[position].stars.toString()
-            tv_repo_fork_count.text = repos[position].forks.toString()
+            tv_repo_star_count.text = repos[position].stars.formatNumber()
+            tv_repo_fork_count.text = repos[position].forks.formatNumber()
 
             // Hide the language tag if language parameter is empty
             if (repos[position].language.isNullOrEmpty()) {

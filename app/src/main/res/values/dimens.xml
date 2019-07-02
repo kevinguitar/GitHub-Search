@@ -11,7 +11,7 @@
     <dimen name="search_bar_icon_size">22dp</dimen>
     <dimen name="search_bar_edit_text_margin">18dp</dimen>
     <dimen name="search_bar_chip_margin">10dp</dimen>
-    <dimen name="search_page_margin">36dp</dimen>
+    <dimen name="search_page_margin">32dp</dimen>
     <dimen name="search_page_loading_size">160dp</dimen>
 
     <!--Repository-->

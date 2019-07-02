@@ -43,6 +43,7 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
             if (it.isEmpty()) {
                 //TODO: show no result hint
             }
+            adapter.repos.clear()
             adapter.repos.addAll(it)
             adapter.notifyDataSetChanged()
         })

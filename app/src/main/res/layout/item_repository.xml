@@ -85,7 +85,7 @@
         android:id="@+id/iv_repo_fork"
         android:layout_width="@dimen/repo_icons_size"
         android:layout_height="@dimen/repo_icons_size"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="12dp"
         android:contentDescription="@string/repo_fork_description"
         android:src="@drawable/icon_fork"
         app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"

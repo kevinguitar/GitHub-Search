@@ -17,8 +17,8 @@
         <item name="android:tint">@color/colorPrimary</item>
         <item name="chipStrokeWidth">1dp</item>
         <item name="chipStrokeColor">@color/colorPrimary</item>
-        <item name="chipStartPadding">14dp</item>
-        <item name="chipEndPadding">14dp</item>
+        <item name="chipStartPadding">12dp</item>
+        <item name="chipEndPadding">12dp</item>
         <item name="chipBackgroundColor">@android:color/white</item>
         <item name="checkedIcon">@drawable/icon_checked</item>
         <item name="rippleColor">@color/colorPrimary</item>
