@@ -113,12 +113,12 @@
             android:id="@+id/iv_search_description_icon"
             android:layout_width="@dimen/search_content_description_icon_size"
             android:layout_height="@dimen/search_content_description_icon_size"
+            android:layout_marginBottom="18dp"
             android:contentDescription="@string/search_content_description_icon_description"
             android:src="@drawable/icon_smile"
             app:layout_constraintBottom_toTopOf="@id/tv_search_description_message"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/cl_search_bar"
             app:layout_constraintVertical_chainStyle="packed" />
 
         <TextView
@@ -126,7 +126,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="18dp"
-            android:layout_marginBottom="18dp"
+            android:layout_marginBottom="36dp"
             android:text="@string/search_content_description_welcome"
             android:textAlignment="center"
             android:textColor="@color/wordingGrey"
@@ -134,7 +134,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_search_description_icon" />
+            app:layout_constraintTop_toBottomOf="@id/cl_search_bar" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_search_repository"
