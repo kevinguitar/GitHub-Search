@@ -19,7 +19,7 @@ class RepositoryAdapter(private val itemListener: ItemListener) :
         private const val TYPE_LOAD_MORE = 2
     }
 
-    val repos = mutableListOf<Repository>()
+    var repos = listOf<Repository>()
     var isLastPage = true
 
     // If hasn't reach the last page, add a load more view to the end of repos

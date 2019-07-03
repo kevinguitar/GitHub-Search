@@ -35,7 +35,7 @@ class SearchViewModel(apiManager: ApiManager? = null) : BaseViewModel(apiManager
     }
 
     // Check ViewModel has data or not
-    fun hasData() = _repositories.value?.isNotEmpty()!!
+    fun hasData() = _repositories.value?.isNotEmpty() ?: false
 
     // Search repositories in IO thread and wait for the result
     fun searchRepositories(keywords: String = keywordsCache, sortBy: String = sortByCache) {
