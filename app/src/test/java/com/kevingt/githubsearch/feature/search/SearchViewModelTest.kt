@@ -35,6 +35,7 @@ class SearchViewModelTest : BaseViewModelTest() {
         coEvery { apiManager.searchRepositories(any(), any(), any()) } returns
                 HttpResult.Success(Response.success(SearchResult()))
 
+        viewModel.initSearch()
         runBlocking {
             viewModel.searchRepositories("fake_keywords", Constants.SORT_BY_BEST_MATCH)
         }
@@ -52,6 +53,7 @@ class SearchViewModelTest : BaseViewModelTest() {
         coEvery { apiManager.searchRepositories(any(), any(), any()) } returns
                 HttpResult.ApiError(fakeMessage)
 
+        viewModel.initSearch()
         runBlocking {
             viewModel.searchRepositories("fake_keywords", Constants.SORT_BY_BEST_MATCH)
         }
@@ -68,6 +70,7 @@ class SearchViewModelTest : BaseViewModelTest() {
         coEvery { apiManager.searchRepositories(any(), any(), any()) } returns
                 HttpResult.NetworkError(Throwable(fakeMessage))
 
+        viewModel.initSearch()
         runBlocking {
             viewModel.searchRepositories("fake_keywords", Constants.SORT_BY_BEST_MATCH)
         }
