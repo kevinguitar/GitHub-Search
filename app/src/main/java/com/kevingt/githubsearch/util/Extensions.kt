@@ -63,7 +63,7 @@ fun ImageView.loadRoundImage(url: String) {
 }
 
 /**
- *
+ * @return  Load more data when RecyclerView scroll to the bottom
  */
 fun RecyclerView.addLoadMoreListener(block: () -> Unit) {
     addOnScrollListener(object : RecyclerView.OnScrollListener() {

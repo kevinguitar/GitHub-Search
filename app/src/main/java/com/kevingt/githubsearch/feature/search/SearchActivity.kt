@@ -61,15 +61,14 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
         }
 
         // Observing live data in ViewModel
-        viewModel.repositories.observe(this, Observer {
-            if (it.isEmpty()) {
+        viewModel.repositories.observe(this, Observer { repos ->
+            if (repos.isEmpty()) {
                 // show no results hint
                 iv_search_description_icon.setImageResource(R.drawable.icon_oops)
                 tv_search_description_message.setText(R.string.search_content_description_no_results)
                 gp_search_description.visibility = View.VISIBLE
             }
-            adapter.repos.clear()
-            adapter.repos.addAll(it)
+            adapter.repos = repos
             adapter.notifyDataSetChanged()
         })
 
@@ -109,7 +108,6 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
         }
         hideKeyboard()
         et_search_keywords.clearFocus()
-        adapter.repos.clear()
         viewModel.initSearch()
         viewModel.searchRepositories(keywords, sortBy)
     }
