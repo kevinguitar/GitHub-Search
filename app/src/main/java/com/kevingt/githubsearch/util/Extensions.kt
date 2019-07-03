@@ -94,6 +94,7 @@ fun Activity.hideKeyboard() {
 /**
  * @return  HttpResult: convert from Response, to be more easy to handle
  */
+
 suspend fun <T> Deferred<Response<T>>.convertToHttpResult(): HttpResult<Response<T>> {
     return try {
         val result = await()
