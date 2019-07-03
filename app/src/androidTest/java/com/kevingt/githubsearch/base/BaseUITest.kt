@@ -9,6 +9,7 @@ abstract class BaseUITest {
 
     @Before
     fun setIdlingResource() {
+        // Set idling resource to let the test wait for async operation
         OkHttp3IdlingResource
             .create("OkHttp", ApiManager.getInstance().getHttpClient())
             .let {

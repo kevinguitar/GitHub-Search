@@ -18,8 +18,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
 
     private lateinit var viewModel: SearchViewModel
-
-    private val adapter = RepositoryAdapter(this)
+    private lateinit var adapter: RepositoryAdapter
 
     override fun getLayoutId() = R.layout.activity_search
 
@@ -52,6 +51,7 @@ class SearchActivity : BaseActivity(), RepositoryAdapter.ItemListener {
         }
 
         // Setup recycler view and adapter
+        adapter = RepositoryAdapter(this)
         rv_search_repository.layoutManager = LinearLayoutManager(this)
         rv_search_repository.adapter = adapter
         rv_search_repository.addLoadMoreListener {

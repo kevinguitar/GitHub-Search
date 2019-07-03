@@ -3,7 +3,7 @@ package com.kevingt.githubsearch.util
 import org.junit.Assert.assertEquals
 import org.junit.Test
 
-class FormatNumberTest {
+class FormatNumberExtensionTest {
     companion object {
         private const val NUM1 = 965
         private const val NUM2 = 1000

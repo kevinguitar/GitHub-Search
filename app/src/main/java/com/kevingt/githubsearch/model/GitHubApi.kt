@@ -15,5 +15,4 @@ interface GitHubApi {
         @Query("page") pageNumber: Int,
         @Query("per_page") perPage: Int = Constants.ITEMS_PER_PAGE
     ): Deferred<Response<SearchResult>>
-
 }
