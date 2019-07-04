@@ -21,6 +21,8 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="14dp"
         android:layout_marginEnd="@dimen/search_page_margin"
+        android:ellipsize="end"
+        android:maxLines="2"
         android:textColor="@color/colorPrimary"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
