@@ -1,145 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <com.kevingt.githubsearch.custom.CustomCircleImageView
-        android:id="@+id/civ_repo_avatar"
-        android:layout_width="@dimen/circle_image_view_size"
-        android:layout_height="@dimen/circle_image_view_size"
-        android:layout_marginStart="@dimen/search_page_margin"
-        android:layout_marginTop="18dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <import type="android.view.View" />
+        <import type="com.kevingt.githubsearch.util.ExtensionsKt"/>
 
-    <TextView
-        android:id="@+id/tv_repo_full_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="14dp"
-        android:layout_marginEnd="@dimen/search_page_margin"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:textColor="@color/colorPrimary"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/civ_repo_avatar"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:text="Kevin / GitHub-Search" />
+        <variable
+            name="repo"
+            type="com.kevingt.githubsearch.model.Repository" />
+    </data>
 
-    <TextView
-        android:id="@+id/tv_repo_description"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
-        android:ellipsize="end"
-        android:maxLines="2"
-        android:textColor="@color/wordingLight"
-        android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@id/tv_repo_full_name"
-        app:layout_constraintStart_toStartOf="@id/tv_repo_full_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_repo_full_name"
-        tools:text="An Android App for BandLab assignment." />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <!--Star-->
-    <ImageView
-        android:id="@+id/iv_repo_star"
-        android:layout_width="@dimen/repo_icons_size"
-        android:layout_height="@dimen/repo_icons_size"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="16dp"
-        android:contentDescription="@string/repo_star_description"
-        android:src="@drawable/icon_star"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tv_repo_full_name"
-        app:layout_constraintTop_toBottomOf="@id/tv_repo_description" />
+        <com.kevingt.githubsearch.custom.CustomCircleImageView
+            android:id="@+id/civ_repo_avatar"
+            android:layout_width="@dimen/circle_image_view_size"
+            android:layout_height="@dimen/circle_image_view_size"
+            android:layout_marginStart="@dimen/search_page_margin"
+            android:layout_marginTop="18dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:roundImage="@{repo.owner.avatarUrl}" />
 
-    <TextView
-        android:id="@+id/tv_repo_star"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:text="@string/repo_star"
-        android:textColor="@color/wordingLight"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
-        app:layout_constraintStart_toEndOf="@id/iv_repo_star"
-        app:layout_constraintTop_toTopOf="@id/iv_repo_star" />
+        <TextView
+            android:id="@+id/tv_repo_full_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="@dimen/search_page_margin"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{repo.fullName}"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/civ_repo_avatar"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Kevin / GitHub-Search" />
 
-    <TextView
-        android:id="@+id/tv_repo_star_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:textColor="@color/wordingLight"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
-        app:layout_constraintStart_toEndOf="@id/tv_repo_star"
-        app:layout_constraintTop_toTopOf="@id/iv_repo_star"
-        tools:text="952" />
+        <TextView
+            android:id="@+id/tv_repo_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@{repo.description}"
+            android:textColor="@color/wordingLight"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toEndOf="@id/tv_repo_full_name"
+            app:layout_constraintStart_toStartOf="@id/tv_repo_full_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_repo_full_name"
+            tools:text="An Android App for BandLab assignment." />
 
-    <!--Fork-->
-    <ImageView
-        android:id="@+id/iv_repo_fork"
-        android:layout_width="@dimen/repo_icons_size"
-        android:layout_height="@dimen/repo_icons_size"
-        android:layout_marginStart="8dp"
-        android:contentDescription="@string/repo_fork_description"
-        android:src="@drawable/icon_fork"
-        app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
-        app:layout_constraintStart_toEndOf="@id/tv_repo_star_count" />
+        <!--Star-->
+        <ImageView
+            android:id="@+id/iv_repo_star"
+            android:layout_width="@dimen/repo_icons_size"
+            android:layout_height="@dimen/repo_icons_size"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"
+            android:contentDescription="@string/repo_star_description"
+            android:src="@drawable/icon_star"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_repo_full_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_repo_description" />
 
-    <TextView
-        android:id="@+id/tv_repo_fork"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:text="@string/repo_fork"
-        android:textColor="@color/wordingLight"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
-        app:layout_constraintStart_toEndOf="@id/iv_repo_fork"
-        app:layout_constraintTop_toTopOf="@id/iv_repo_star" />
+        <TextView
+            android:id="@+id/tv_repo_star"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@string/repo_star"
+            android:textColor="@color/wordingLight"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
+            app:layout_constraintStart_toEndOf="@id/iv_repo_star"
+            app:layout_constraintTop_toTopOf="@id/iv_repo_star" />
 
-    <TextView
-        android:id="@+id/tv_repo_fork_count"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="2dp"
-        android:textColor="@color/wordingLight"
-        android:textSize="12sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
-        app:layout_constraintStart_toEndOf="@id/tv_repo_fork"
-        app:layout_constraintTop_toTopOf="@id/iv_repo_star"
-        tools:text="538" />
+        <TextView
+            android:id="@+id/tv_repo_star_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@{ExtensionsKt.formatNumber(repo.stars)}"
+            android:textColor="@color/wordingLight"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
+            app:layout_constraintStart_toEndOf="@id/tv_repo_star"
+            app:layout_constraintTop_toTopOf="@id/iv_repo_star"
+            tools:text="952" />
 
-    <!--Language tag-->
-    <TextView
-        android:id="@+id/tv_repo_language"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_language_tag"
-        android:paddingStart="@dimen/repo_language_tag_padding"
-        android:paddingEnd="@dimen/repo_language_tag_padding"
-        android:textColor="@color/wordingWhite"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
-        app:layout_constraintEnd_toEndOf="@id/tv_repo_full_name"
-        app:layout_constraintTop_toTopOf="@id/iv_repo_star"
-        tools:text="java" />
+        <!--Fork-->
+        <ImageView
+            android:id="@+id/iv_repo_fork"
+            android:layout_width="@dimen/repo_icons_size"
+            android:layout_height="@dimen/repo_icons_size"
+            android:layout_marginStart="8dp"
+            android:contentDescription="@string/repo_fork_description"
+            android:src="@drawable/icon_fork"
+            app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
+            app:layout_constraintStart_toEndOf="@id/tv_repo_star_count" />
 
-    <View
-        android:id="@+id/v_repo_divider"
-        android:layout_width="0dp"
-        android:layout_height="2dp"
-        android:background="@color/colorDivider"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@id/tv_repo_full_name"
-        app:layout_constraintStart_toStartOf="@id/civ_repo_avatar" />
+        <TextView
+            android:id="@+id/tv_repo_fork"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@string/repo_fork"
+            android:textColor="@color/wordingLight"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
+            app:layout_constraintStart_toEndOf="@id/iv_repo_fork"
+            app:layout_constraintTop_toTopOf="@id/iv_repo_star" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/tv_repo_fork_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="2dp"
+            android:text="@{ExtensionsKt.formatNumber(repo.forks)}"
+            android:textColor="@color/wordingLight"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
+            app:layout_constraintStart_toEndOf="@id/tv_repo_fork"
+            app:layout_constraintTop_toTopOf="@id/iv_repo_star"
+            tools:text="538" />
+
+        <!--Language tag-->
+        <TextView
+            android:id="@+id/tv_repo_language"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_language_tag"
+            android:paddingStart="@dimen/repo_language_tag_padding"
+            android:paddingEnd="@dimen/repo_language_tag_padding"
+            android:text="@{repo.language}"
+            android:textColor="@color/wordingWhite"
+            android:textSize="12sp"
+            android:visibility="@{repo.isLanguageValid() ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/iv_repo_star"
+            app:layout_constraintEnd_toEndOf="@id/tv_repo_full_name"
+            app:layout_constraintTop_toTopOf="@id/iv_repo_star"
+            tools:text="java" />
+
+        <View
+            android:id="@+id/v_repo_divider"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="@color/colorDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@id/tv_repo_full_name"
+            app:layout_constraintStart_toStartOf="@id/civ_repo_avatar" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

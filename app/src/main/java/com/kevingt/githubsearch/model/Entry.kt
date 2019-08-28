@@ -32,7 +32,9 @@ data class Repository(
     @SerializedName("forks_count")
     val forks: Int,
     val language: String?
-)
+) {
+    fun isLanguageValid() = language?.isNotEmpty() ?: false
+}
 
 data class Owner(
     @SerializedName("avatar_url")
