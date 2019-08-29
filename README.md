@@ -3,7 +3,7 @@
 An Android app provide GitHub repository search.<br/><br/>
 
 ## Using Library
-**Structure:** Android Architecture Components (ViewModel, LiveData)
+**Structure:** Android Architecture Components (ViewModel, LiveData), Data Binding
 
 **Network:** Retrofit, Coroutines
 
