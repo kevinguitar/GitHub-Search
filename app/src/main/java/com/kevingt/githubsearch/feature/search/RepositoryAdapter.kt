@@ -40,7 +40,10 @@ class RepositoryAdapter(private val itemListener: ItemListener) :
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (holder is LoadMoreViewHolder) return
-        (holder as RepoViewHolder).binding.repo = repos[position]
+        (holder as RepoViewHolder).binding.apply {
+            repo = repos[position]
+            executePendingBindings()
+        }
     }
 
     interface ItemListener {
